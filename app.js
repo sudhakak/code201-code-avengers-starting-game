@@ -31,10 +31,9 @@ function login() {
     localStorage.setItem("LoginList", JSON.stringify(loginUserDetails));
     localStorage.setItem("currentUser", userName);
   } else {
-    alert("Username already existing or Null values are entered");
+    var currentUser = localStorage.getItem("currentUser");
+    loadTodayView();
   }
-  var user = localStorage.getItem("currentUser");
-  console.log(user);
 
   console.log("After Inserting Data", localStorage);
 }
