@@ -1,3 +1,23 @@
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes bounceOut {
+  0% {
+    transform: scale(1.0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -36,3 +56,24 @@ body {
   display: table;
   clear: both;
 }
+
+ul #today {
+  margin: 0;
+  padding: 0;
+}
+
+li.task {
+  margin: 10px;
+  border: 2px;
+  border-style: solid;
+  width: 50%;
+  padding: 5px;
+  animation-name: bounceIn;
+  animation-duration: 1s;
+}
+
+ul.task_body {
+  margin-left: 5px;
+  margin-top: 2px;
+}
+

@@ -19,7 +19,7 @@ function getTodaysTasks(){
   var todayStr = `${mon}/${day}/${yr}`;
   var todayTaskArr = [];
   todayTaskArr = allTaskArr.reduce(function(taskArr, task){
-    if (task.userName === localStorage.currentUser && task.dueDateTime === todayStr && task.status === 'New') {
+    if (task.username === localStorage.currentUser && task.dueDateTime === todayStr && task.status === 'New') {
       taskArr.push(task);
     }
     return taskArr;
@@ -30,8 +30,11 @@ function getTodaysTasks(){
 function renderTodaysTasks(inTaskArr){
   for (var taskCounter = 0; taskCounter < inTaskArr.length; taskCounter++) {
     var displayTask = document.createElement('li');
+    displayTask.className = 'task',
+    displayTask.id = inTaskArr[taskCounter].id,
     displayTask.textContent = inTaskArr[taskCounter].title;
     var displayTaskBody = document.createElement('ul');
+    displayTaskBody.className = 'task_body';
     var displayTaskDescription = document.createElement('li');
     var displayTaskDueDateTime = document.createElement('li');
     var displayTaskStatus = document.createElement('input');
@@ -55,6 +58,7 @@ function markComplete(){
     if (parseInt(markCompleteArr[markCounter].id) === parseInt(id)) {
       markCompleteArr[markCounter].status = 'Done';
       localStorage.Users = JSON.stringify(markCompleteArr);
+      document.getElementById(id).style.animation = 'bounceOut 2s';
       setTimeout(function() {
         loadTodayView();
       }, 1500);
