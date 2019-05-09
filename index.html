@@ -6,12 +6,79 @@
       <link rel="stylesheet" type="text/css" media="screen" href="style.css">
 </head>
 <body>
-
+  
     <h1>Task Management</h1>
-    
+
+
     <div class="row">
       <div class="column left">
         <h2>Add a Task</h2>
+		      <form id="Add_task">
+           
+			<br><br>
+		  <table>
+              <tr>
+                  <td width="30%"><span onclick="newElement()" class="addBtn">Title*</span></td>
+                  <td width="70%"><input type="text" name="title" id="myInput" placeholder="Title..."></td>
+
+              </tr>
+              <tr>
+                  <td width="30%"> <span onclick="newElement()" class="addBtn">Priority*</span></td>
+                  <td width="70%"> <input type="text" name="priority" id="myInput" placeholder="Priority..."> </td>
+              </tr>
+
+              <tr>
+                  <td width="30%"> <span onclick="newElement()" class="addBtn">Description*</span></td>
+                  <td width="70%"> <input type="text" name="description" id="myInput" placeholder="Description..."> </td>
+              </tr>
+
+              <tr>
+                      <td width="30%"> <span onclick="newElement()" class="addBtn">Category*</span></td>
+                      <td width="70%"> <input type="text" name="category" id="myInput" placeholder="Category..."> </td>
+                  </tr>
+
+                  <tr>
+                          <td width="30%"> <span onclick="newElement()" class="addBtn">Date*</span></td>
+                          <td width="70%"> <input type="date" name="date" id="myInput" placeholder="Date..."> </td>
+                      </tr>
+      
+                      <tr>
+                              <td width="30%"> <span onclick="newElement()" class="addBtn">Time*</span></td>
+                              <td width="70%"> <input type="time" name="time" id="myInput" placeholder="Time..."> </td>
+                          </tr>
+                          <tr>
+                                  <td width="30%"> <span onclick="newElement()" class="addBtn">Location</span></td>
+                                  <td width="70%"> <input type="text" name="location" id="myInput" placeholder="Location..."> </td>
+                              </tr>
+              
+                              <tr>
+                                      <td width="30%"> <span onclick="newElement()" class="addBtn">Alert</span></td>
+                                      <td width="70%"> <input type="text" name="alert" id="myInput" placeholder="Alert..."> </td>
+                                  </tr>
+           </table><br><br>
+           <br><br>
+<button id="submit_btn" type="submit">add task</button>   
+        </form>
+		 <section>
+            <table>
+                <thead>
+                    <th>Title</th>
+                    <th>Priority</th>
+                    <th>Description</th>
+                    <th>Category</th>
+					<th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+					 <th>Alert</th>
+                </thead>
+                <tbody id="task_table">
+                    <!-- dynamic data will be inserted here -->
+                </tbody>
+            </table>
+        </section>
+		
+		  <script src="app.js"></script>
+
         <p></p>
       </div>
       <div class="column middle">
