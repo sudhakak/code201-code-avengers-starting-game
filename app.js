@@ -1,11 +1,11 @@
 'use strict';
 
-var today = document.getElementById('today');
+var alltask = document.getElementById('alltask');
 
 //Today pane functions begin here
 
-function getTodaysTasks(){
-  var allTaskArr = JSON.parse(localStorage.Users);
+function getAllTasks(){
+   var allTaskArr = JSON.parse(localStorage.Users);
   var today = new Date();
   var day = today.getDate();
   if (parseInt(day) < 10) {
@@ -17,68 +17,48 @@ function getTodaysTasks(){
   }
   var yr = today.getFullYear();
   var todayStr = `${mon}/${day}/${yr}`;
-  var todayTaskArr = [];
-  todayTaskArr = allTaskArr.reduce(function(taskArr, task){
-    if (task.userName === localStorage.currentUser && task.dueDateTime === todayStr && task.status === 'New') {
+  var allTaskShowArr = [];
+  allTaskShowArr = allTaskArr.reduce(function(taskArr, task){
+    if (task.userName === localStorage.currentUser && task.dueDateTime >= todayStr && task.status === 'New') {
       taskArr.push(task);
     }
     return taskArr;
   },[]);
-  return todayTaskArr;
+  return allTaskShowArr;
 }
 
-function renderTodaysTasks(inTaskArr){
+function renderAllTasks(inTaskArr){
   for (var taskCounter = 0; taskCounter < inTaskArr.length; taskCounter++) {
     var displayTask = document.createElement('li');
     displayTask.textContent = inTaskArr[taskCounter].title;
     var displayTaskBody = document.createElement('ul');
     var displayTaskDescription = document.createElement('li');
     var displayTaskDueDateTime = document.createElement('li');
-    var displayTaskStatus = document.createElement('input');
     displayTaskDescription.textContent = inTaskArr[taskCounter].description;
     displayTaskDueDateTime.textContent = inTaskArr[taskCounter].dueDateTime;
-    displayTaskStatus.type = 'checkbox';
-    displayTaskStatus.id = inTaskArr[taskCounter].id;
-    displayTaskStatus.onchange = markComplete;
     displayTaskBody.appendChild(displayTaskDescription);
     displayTaskBody.appendChild(displayTaskDueDateTime);
-    displayTaskBody.appendChild(displayTaskStatus);
     displayTask.appendChild(displayTaskBody);
-    today.appendChild(displayTask);
+    allTaskArr.appendChild(displayTask);
   }
 }
 
-function markComplete(){
-  var id = this.id;
-  var markCompleteArr = JSON.parse(localStorage.Users);
-  for (var markCounter = 0; markCounter < markCompleteArr.length; markCounter++) {
-    if (parseInt(markCompleteArr[markCounter].id) === parseInt(id)) {
-      markCompleteArr[markCounter].status = 'Done';
-      localStorage.Users = JSON.stringify(markCompleteArr);
-      setTimeout(function() {
-        loadTodayView();
-      }, 1500);
-      return;
-    }
-  }
-}
-
-function loadTodayView(){
-  today.innerHTML = '';
+function loadAllView(){
+  alltask.innerHTML = '';
 
   if (!localStorage.currentUser) {
     console.log('No current user.');
-    today.innerHTML = 'No current user.';
+    alltask.innerHTML = 'No current user.';
   }
   if (!localStorage[localStorage.currentUser]) {
     console.log('No tasks for this user.');
-    today.innerHTML = 'No tasks for this user.';
+    alltask.innerHTML = 'No tasks for this user.';
   }
-  var tasks = getTodaysTasks();
+  var tasks = getAllTasks();
   if (!tasks[0]) {
-    today.innerHTML = 'No tasks due today.';
+    alltask.innerHTML = 'No tasks.';
   }
-  renderTodaysTasks(tasks);
+  renderAllTasks(tasks);
 }
 
 //Today pane execution begins here:
@@ -88,5 +68,5 @@ window.addEventListener('unload', function(){
   localStorage.removeItem('currentUser');
 });
 
-//execute today view
-loadTodayView();
+//execute alltask view
+loadAllView();
