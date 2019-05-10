@@ -38,8 +38,9 @@ function task(
   date,
   time,
   location,
-  alert,
-  currentUser
+  alertData,
+  currentUser,
+  status
 ) {
   this.title = title;
   this.priority = priority;
@@ -48,12 +49,13 @@ function task(
   this.date = date;
   this.time = time;
   this.location = location;
-  this.alert = alert;
+  this.alertData = alertData;
   this.currentUser = currentUser;
+  this.status = status;
 }
 
 function formData(event) {
-  //localStorage.clear();
+  // localStorage.clear();
   /* while (data.length) {
     data.pop();
   }*/
@@ -66,25 +68,32 @@ function formData(event) {
     var date = event.target.date.value;
     var time = event.target.time.value;
     var location = event.target.location.value;
-    var alert = event.target.alert.value;
+    var alertData = event.target.alert.value;
     var currentUser = localStorage.currentUser;
+    var status = "New";
+    console.log(localStorage);
+
+    if (currentUser) {
+      data.push(
+        new task(
+          title,
+          priority,
+          description,
+          category,
+          date,
+          time,
+          location,
+          alertData,
+          currentUser,
+          status
+        )
+      );
+    } else {
+      alert("Null UserName is entered please refresh the page and login");
+    }
   } catch (err) {
-    console.log("Failed to inser data into data array" + err.message);
+    console.log("Failed to insert data into data array" + err.message);
   }
-  console.log(localStorage);
-  data.push(
-    new task(
-      title,
-      priority,
-      description,
-      category,
-      date,
-      time,
-      location,
-      alert,
-      currentUser
-    )
-  );
   localStorage.setItem("data", JSON.stringify(data));
   console.log("Values are added into the Array data");
   console.log(data.currentUser);
@@ -104,8 +113,11 @@ function login() {
   if (loginUserDetails.includes(userName) == false && userName != null) {
     loginUserDetails.push(userName);
     localStorage.setItem("loginUserDetails", JSON.stringify(loginUserDetails));
+  } else if (typeof userName === "undefined" || !userName) {
+    alert("Null values are entered");
   } else {
     var currentUser = localStorage.getItem("currentUser");
+    // debugger;
     console.log(localStorage);
     loadTodayView();
     loadAllView();
@@ -119,7 +131,9 @@ var today = document.getElementById("today");
 //Today pane functions begin here
 
 function getTodaysTasks() {
+  //debugger;
   var allTaskArr = JSON.parse(localStorage.data);
+  console.log(localStorage.data);
   var today = new Date();
   var day = today.getDate();
   if (parseInt(day) < 10) {
@@ -134,8 +148,9 @@ function getTodaysTasks() {
   var todayTaskArr = [];
   todayTaskArr = allTaskArr.reduce(function(taskArr, task) {
     if (
-      task.username === localStorage.currentUser &&
-      task.dueDateTime === todayStr &&
+      task.currentUser ===
+        localStorage.currentUser /*&&
+      task.dueDateTime === todayStr */ &&
       task.status === "New"
     ) {
       taskArr.push(task);
@@ -236,9 +251,10 @@ function getAllTasks() {
   var allTaskShowArr = [];
   allTaskShowArr = allTaskArr.reduce(function(taskArr, task) {
     if (
-      task.userName === localStorage.currentUser &&
+      task.currentUser ===
+      localStorage.currentUser /*&&
       task.dueDateTime >= todayStr &&
-      task.status === "New"
+      task.status === "New"*/
     ) {
       taskArr.push(task);
     }
@@ -259,7 +275,7 @@ function renderAllTasks(inTaskArr) {
     displayTaskBody.appendChild(displayTaskDescription);
     displayTaskBody.appendChild(displayTaskDueDateTime);
     displayTask.appendChild(displayTaskBody);
-    allTaskArr.appendChild(displayTask);
+    alltask.appendChild(displayTask);
   }
 }
 
