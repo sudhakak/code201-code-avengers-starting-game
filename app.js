@@ -67,10 +67,6 @@ function task(
   this.id = nextVal();
 }
 
-function formRouter(event) {
-  console.log(event);
-}
-
 function formData(event) {
 
   //localStorage.clear();
@@ -123,22 +119,26 @@ function login(event) {
 
   console.log('Before Inserting Data ', localStorage);
   var userName = event.target.userInput.value;
-  var loginUserDetails =
+  if (typeof(userName) === 'undefined' || userName === '') {
+    alert('User name must be at least one character.');
+  } else {
+    var loginUserDetails =
     JSON.parse(localStorage.getItem('loginUserDetails')) || [];
-  localStorage.setItem('currentUser', userName);
-  if (!loginUserDetails.includes(userName) && userName !== '') {
-    loginUserDetails.push(userName);
-    localStorage.setItem('loginUserDetails', JSON.stringify(loginUserDetails));
-  }
-  console.log(localStorage);
-  loadTodayView();
-  loadAllView();
+    localStorage.setItem('currentUser', userName);
+    if (!loginUserDetails.includes(userName) && userName !== '') {
+      loginUserDetails.push(userName);
+      localStorage.setItem('loginUserDetails', JSON.stringify(loginUserDetails));
+    }
+    console.log(localStorage);
+    loadTodayView();
+    loadAllView();
 
-  formPane.innerHTML = `<h2>Add a Task</h2><form id="Add_task">${formHTML}</form>`;
-  form = document.getElementById('Add_task');
-  console.log(form);
-  form.addEventListener('submit', formData);
-  console.log('After Inserting Data', localStorage);
+    formPane.innerHTML = `<h2>Add a Task</h2><form id="Add_task">${formHTML}</form>`;
+    form = document.getElementById('Add_task');
+    console.log(form);
+    form.addEventListener('submit', formData);
+    console.log('After Inserting Data', localStorage);
+  }
 }
 
 var today = document.getElementById('today');
