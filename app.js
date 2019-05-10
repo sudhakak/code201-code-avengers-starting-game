@@ -58,16 +58,19 @@ function formData(event) {
     data.pop();
   }*/
   event.preventDefault();
-  debugger;
-  var title = event.target.title.value;
-  var priority = event.target.priority.value;
-  var description = event.target.description.value;
-  var category = event.target.category.value;
-  var date = event.target.date.value;
-  var time = event.target.time.value;
-  var location = event.target.location.value;
-  var alert = event.target.alert.value;
-  var currentUser = localStorage.currentUser;
+  try {
+    var title = event.target.title.value;
+    var priority = event.target.priority.value;
+    var description = event.target.description.value;
+    var category = event.target.category.value;
+    var date = event.target.date.value;
+    var time = event.target.time.value;
+    var location = event.target.location.value;
+    var alert = event.target.alert.value;
+    var currentUser = localStorage.currentUser;
+  } catch (err) {
+    console.log("Failed to inser data into data array" + err.message);
+  }
   console.log(localStorage);
   data.push(
     new task(
@@ -94,7 +97,6 @@ function login() {
   //localStorage.clear();
 
   console.log("Before Inserting Data ", localStorage);
-  debugger;
   var userName = prompt("Please enter userName");
   var loginUserDetails =
     JSON.parse(localStorage.getItem("loginUserDetails")) || [];
@@ -102,11 +104,9 @@ function login() {
   if (loginUserDetails.includes(userName) == false && userName != null) {
     loginUserDetails.push(userName);
     localStorage.setItem("loginUserDetails", JSON.stringify(loginUserDetails));
-    loadTodayView();
   } else {
     var currentUser = localStorage.getItem("currentUser");
     console.log(localStorage);
-    debugger;
     loadTodayView();
     loadAllView();
   }
@@ -120,10 +120,6 @@ var today = document.getElementById("today");
 
 function getTodaysTasks() {
   var allTaskArr = JSON.parse(localStorage.data);
-  console.log(localStorage.currentUser);
-
-  debugger;
-  console.log(allTaskArr);
   var today = new Date();
   var day = today.getDate();
   if (parseInt(day) < 10) {
