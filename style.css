@@ -18,6 +18,7 @@
     opacity: 0;
   }
 }
+
 * {
   box-sizing: border-box;
 }
@@ -25,7 +26,27 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-
+h1 {
+  font-weight: bold;
+  font-size: 48pt;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#loginForm {
+  margin-top: 20px;
+  text-align: center;
+}
+.button {
+  background-color: #0000ff; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 .column {
   float: left;
   padding: 10px;
@@ -42,12 +63,14 @@ body {
   width: 40%;
   color: darkgreen;
   background-color: lightgoldenrodyellow;
+  overflow: scroll;
 }
 
 .right {
   width: 30%;
-  color:cornflowerblue;
-  background-color:lawngreen;
+  color: cornflowerblue;
+  background-color: lawngreen;
+  overflow: scroll;
 }
 
 /* Clear floats after the columns */
@@ -60,6 +83,7 @@ body {
 ul #today {
   margin: 0;
   padding: 0;
+  
 }
 
 li.task {
@@ -73,5 +97,5 @@ li.task {
 ul.task_body {
   margin-left: 5px;
   margin-top: 2px;
+  padding: 2px;
 }
-
