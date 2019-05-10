@@ -1,6 +1,7 @@
 'use strict';
 
 var today = document.getElementById('today');
+localStorage.displayedItems = [];
 
 //Today pane functions begin here
 
@@ -48,6 +49,10 @@ function renderTodaysTasks(inTaskArr){
     displayTaskBody.appendChild(displayTaskStatus);
     displayTask.appendChild(displayTaskBody);
     today.appendChild(displayTask);
+    if (!localStorage.displayedItems.includes(inTaskArr[taskCounter].id)) {
+      document.getElementById(inTaskArr[taskCounter].id).style.animation = 'bounceIn 2s';
+      localStorage.displayedItems.push(inTaskArr[taskCounter].id);
+    }
   }
 }
 
@@ -90,6 +95,7 @@ function loadTodayView(){
 //setting event to unload currentUser whenever leaving the page
 window.addEventListener('unload', function(){
   localStorage.removeItem('currentUser');
+  localStorage.removeItem('displayedItems');
 });
 
 //execute today view

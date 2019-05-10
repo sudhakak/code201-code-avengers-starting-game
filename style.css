@@ -68,8 +68,6 @@ li.task {
   border-style: solid;
   width: 50%;
   padding: 5px;
-  animation-name: bounceIn;
-  animation-duration: 1s;
 }
 
 ul.task_body {
