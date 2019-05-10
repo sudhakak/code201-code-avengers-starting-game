@@ -17,14 +17,136 @@
     <div class="row">
       <div class="column left">
         <h2>Add a Task</h2>
+        <br /><br />
+        <form id="Add_task">
+          <br /><br />
+          <table>
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Title*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="title"
+                  id="myInput"
+                  placeholder="Title..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Priority*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="priority"
+                  id="myInput"
+                  placeholder="Priority..."
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Description*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="description"
+                  id="myInput"
+                  placeholder="Description..."
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Category*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="category"
+                  id="myInput"
+                  placeholder="Category..."
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Date*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="date"
+                  name="date"
+                  id="myInput"
+                  placeholder="Date..."
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Time*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="time"
+                  name="time"
+                  id="myInput"
+                  placeholder="Time..."
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Location</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="location"
+                  id="myInput"
+                  placeholder="Location..."
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Alert</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="alert"
+                  id="myInput"
+                  placeholder="Alert..."
+                />
+              </td>
+            </tr>
+          </table>
+
+          <br /><br />
+          <br /><br />
+          <button id="submit_btn" type="submit">add task</button>
+        </form>
+
         <p></p>
       </div>
       <div class="column middle">
         <h2>Today's Tasks</h2>
-        <p></p>
+        <ul id="today"></ul>
       </div>
       <div class="column right">
         <h2>All Tasks</h2>
+        <ul id="alltask"></ul>
+
         <p></p>
       </div>
     </div>
