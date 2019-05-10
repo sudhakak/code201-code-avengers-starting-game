@@ -1,18 +1,148 @@
 <!DOCTYPE html>
 <html>
-<head>
-     <title>To Do List - a task management tool</title>
-      <link rel="stylesheet" type="text/css" media="screen" href="reset.css">
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-</head>
-<body>
+  <head>
+    <title>To Do List - a task management tool</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
+  <body>
+    <p>Click on the below button to login.</p>
+
+    <button class="button" onclick="login()">Login</button>
+
+    <p id="demo"></p>
 
     <h1>Task Management</h1>
-    
+
     <div class="row">
       <div class="column left">
         <h2>Add a Task</h2>
+        <br /><br />
+        <form id="Add_task">
+          <br /><br />
+          <table>
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Title*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="title"
+                  id="myInput"
+                  placeholder="Title..."
+				  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Priority*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="priority"
+                  id="myInput"
+                  placeholder="Priority..."
+				  required
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Description*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="description"
+                  id="myInput"
+                  placeholder="Description..."
+				  required
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Category*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="category"
+                  id="myInput"
+                  placeholder="Category..."
+				  required
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Date*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="date"
+                  name="date"
+                  id="myInput"
+                  placeholder="Date..."
+				  required
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Time*</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="time"
+                  name="time"
+                  id="myInput"
+                  placeholder="Time..."
+				  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Location</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="location"
+                  id="myInput"
+                  placeholder="Location..."
+				                  />
+              </td>
+            </tr>
+
+            <tr>
+              <td width="30%">
+                <span onclick="newElement()" class="addBtn">Alert</span>
+              </td>
+              <td width="70%">
+                <input
+                  type="text"
+                  name="alert"
+                  id="myInput"
+                  placeholder="Alert..."
+                />
+              </td>
+            </tr>
+          </table>
+
+          <br /><br />
+          <br /><br />
+          <button id="submit_btn" type="submit">add task</button>
+        </form>
+
         <p></p>
       </div>
       <div class="column middle">
@@ -21,10 +151,11 @@
       </div>
       <div class="column right">
         <h2>All Tasks</h2>
-		<ul id="alltask"></ul>
+        <ul id="alltask"></ul>
+
         <p></p>
       </div>
     </div>
     <script src="app.js"></script>
-    </body>
+  </body>
 </html>
